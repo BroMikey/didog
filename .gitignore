@@ -1,0 +1,137 @@
+# ===== 文档文件 =====
+# 实训方案、讲义等 Word/PPT/Excel 文档（按需保留可用 ! 例外）
+*.docx
+*.doc
+*.pptx
+*.ppt
+*.xlsx
+*.xls
+# Office 打开文件时产生的临时文件
+~$*
+
+# ===== 操作系统 =====
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.swp
+*~
+
+# ===== 编辑器 / IDE =====
+# VS Code / Cursor
+.vscode/
+# JetBrains CLion / PyCharm
+.idea/
+*.iml
+# Keil MDK / IAR / STM32CubeIDE / MCUXpresso
+*.uvguix.*
+*.uvoptx
+*.uvprojx.bak
+*_uvoptx.*
+*.scvd
+*.launch
+.settings/
+.settings
+Debug/
+Release/
+# EIDE / VSCode 嵌入式插件
+.eide/
+build/
+
+# ===== C / C++ 编译产物 =====
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.elf
+*.bin
+*.hex
+*.axf
+*.map
+*.lst
+*.gch
+*.pch
+*.d
+*.out
+*.i
+*.s
+*.su
+# 可执行/中间文件夹
+obj/
+bin/
+out/
+
+# ===== Xmake =====
+.xmake/
+build/
+xmake.lua.bak
+*.user
+
+# ===== CMake / Make =====
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile.bak
+*.ninja
+.ninja_deps
+.ninja_log
+compile_commands.json
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+ENV/
+.python-version
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.log
+.coverage
+htmlcov/
+.pdm-python
+poetry.lock
+
+# ===== AI / 机器视觉数据集与模型权重 =====
+# 数据集与权重体积大，一般不入库（视团队约定调整）
+datasets/
+data/
+runs/
+weights/
+*.pt
+*.pth
+*.onnx
+*.weights
+*.tflite
+*.caffemodel
+*.pb
+*.h5
+*.ckpt
+
+# ===== 其他 =====
+*.log
+*.tmp
+*.bak
+*.orig
+*.rej
+*.pid
+*.seed
+.cache/
+tmp/
