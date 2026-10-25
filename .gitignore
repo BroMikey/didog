@@ -1,3 +1,10 @@
+# myself
+todo/
+archive/
+
+
+
+
 # ===== 文档文件 =====
 # 实训方案、讲义等 Word/PPT/Excel 文档（按需保留可用 ! 例外）
 *.docx
@@ -61,12 +68,57 @@ build/
 *.d
 *.out
 *.i
-*.s
 *.su
+*.s
+# 启动汇编文件是源码，必须入库（上面的 *.s 会误伤，这里显式放行）
+!startup_*.s
+!startup_*.S
 # 可执行/中间文件夹
 obj/
 bin/
 out/
+
+# ===== 嵌入式 STM32（Keil MDK-ARM / STM32CubeMX / STM32CubeIDE） =====
+# 注意：Project.uvprojx（Keil 工程）、*.ioc（CubeMX 配置）、
+# 链接脚本（*.ld / *.sct 源文件）、Library/ 与 Start/ 目录必须保留入库
+# --- Keil MDK-ARM 编译输出目录 ---
+Objects/
+Listings/
+DebugConfig/
+RTE/
+# --- Keil 中间文件与构建报告 ---
+*.crf
+*.dep
+*.lnp
+*.iex
+*.build_log.htm
+*.uvguix.*
+*.uvoptx
+*_uvoptx.*
+*.uvprojx.bak
+*.dbgconf
+*.scvd
+# --- 下载器 / 调试器生成文件 ---
+JLinkLog.txt
+JLinkSettings.ini
+*.jlink
+# --- STM32CubeMX / STM32CubeIDE ---
+.mxproject
+.project
+.cproject
+.settings/
+*.launch
+
+# ===== 嵌入式其他工具链（可选） =====
+# IAR EWARM
+*.eww
+*.ewp.bak
+# SEGGER Embedded Studio
+*.emProject
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
 
 # ===== Xmake =====
 .xmake/

@@ -1,0 +1,10 @@
+# clangd 项目配置（与 compile_flags.txt 配合使用）
+# Keil 的旧版 CMSIS core_cm3.c 使用 naked 函数写 C 语句，
+# clang 不支持这种写法，属于第三方库的误报，这里屏蔽该诊断。
+Diagnostics:
+  Suppress:
+    - non_asm_stmt_in_naked_function
+    - asm_naked_parm_ref
+    # stm32f10x.h 与 stm32f10x_conf.h 互相包含，单独打开该头文件时
+    # clangd 的 preamble 会报此提示，属于正常现象
+    - pp_including_mainfile_in_preamble
