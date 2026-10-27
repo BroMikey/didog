@@ -1,10 +1,43 @@
-# clangd 项目配置（与 compile_flags.txt 配合使用）
-# Keil 的旧版 CMSIS core_cm3.c 使用 naked 函数写 C 语句，
-# clang 不支持这种写法，属于第三方库的误报，这里屏蔽该诊断。
+# .clangd
 Diagnostics:
   Suppress:
     - non_asm_stmt_in_naked_function
     - asm_naked_parm_ref
-    # stm32f10x.h 与 stm32f10x_conf.h 互相包含，单独打开该头文件时
-    # clangd 的 preamble 会报此提示，属于正常现象
+    # stm32f10x.h 与 stm32f10x_conf.h 互相包含，单独打开头文件时的正常提示
     - pp_including_mainfile_in_preamble
+
+CompileFlags:
+  Add:
+    - --target=arm-none-eabi
+    - -mcpu=cortex-m3
+    - -mthumb
+    - -std=c99
+    - -DSTM32F10X_MD
+    - -DUSE_STDPERIPH_DRIVER
+    - -DHSE_VALUE=8000000
+
+    # 头文件搜索路径
+    - -IStart
+    - -ILibrary
+    - -IUser
+    - -ISystem
+    - -isystem
+    - null/share/armcc/include
+    - -ferror-limit=0
+  Remove:
+    - --cpu
+    - --li
+    - --c99
+    - --split_sections
+    - --diag_suppress=*
+    - --no_depend_system_headers
+    - --depend
+    - --strict
+    - --enum_is_int
+    - --gnu
+    - --apcs=*
+    - --signed_chars
+    - --split_ldm
+    - --execute_only
+    - -Otime
+  # CompilationDatabase: "./build/Target 1"
