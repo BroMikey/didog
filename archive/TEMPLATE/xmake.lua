@@ -1,7 +1,28 @@
-target("hello")
-    add_rules("mdk.console")
-    add_files("src/*.c")
-    set_runtimes("microlib")
+add_rules("mode.debug", "mode.release")
+
+-- 使用官方 stm32-devel addon：
+-- 它提供 gnu-rm 工具链、CMSIS 启动文件/SystemInit，并根据 board 自动生成链接脚本。
+-- add_addons("stm32-devel")
+
+includes("@addon/stm32-devel/board")
+
+target("template")
+    add_rules("@addon/stm32-devel/app")
+    set_languages("c99")
+
+    -- STM32F103C8: 中容量产品，使用标准外设库，外部晶振 8MHz
+    add_defines("STM32F10X_MD", "USE_STDPERIPH_DRIVER", "HSE_VALUE=8000000")
+
+    -- StdPeriph 头文件搜索路径
+    add_includedirs("Start", "Library", "System", "User")
+
+    -- StdPeriph 外设库与应用代码
+    -- 启动文件和 SystemInit 由 addon 的 CMSIS 设备包提供，不要重复添加
+    add_files(
+        "Library/*.c",
+        "System/*.c",
+        "User/*.c"
+    )
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

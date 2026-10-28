@@ -1,0 +1,13 @@
+{
+    __meta__ = {
+        version = "1.0"
+    },
+    ["stm32-devel"] = {
+        repo = {
+            branch = "master",
+            commit = "41b3950bfa578283a44f594ce7c69de1bc92d63d",
+            url = "https://gitlab.com/tboox/xmake-repo.git"
+        },
+        version = "v1.0.1"
+    }
+}
