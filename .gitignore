@@ -7,7 +7,7 @@ todo/
 
 # ===== 文档文件 =====
 # 实训方案、讲义等 Word/PPT/Excel 文档（按需保留可用 ! 例外）
-*.docx
+# *.docx
 *.doc
 *.pptx
 *.ppt
