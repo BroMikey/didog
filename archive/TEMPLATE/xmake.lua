@@ -16,6 +16,9 @@ target("template")
     -- StdPeriph 头文件搜索路径
     add_includedirs("Start", "Library", "System", "User")
 
+    -- set output filepath of .elf and .hex
+    set_targetdir("Objects/")
+
     -- StdPeriph 外设库与应用代码
     -- 启动文件和 SystemInit 由 addon 的 CMSIS 设备包提供，不要重复添加
     add_files(
