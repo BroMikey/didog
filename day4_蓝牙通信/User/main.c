@@ -1,18 +1,51 @@
-#include "stm32f10x.h"                  // Device header
-#include "Delay.h"
+#include "stm32f10x.h"
 #include "LED.h"
 #include "myUsart1.h"
 
+/* Reply text goes back over the same Bluetooth link, so the phone sees the
+ * result of every command. */
+static void Reply(char *msg)
+{
+	USART3_SendString(msg);
+}
+
 int main(void)
 {
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 
-	USART3_Init(115200);  //
-	LED_Init(); //
+	USART3_Init(9600);   /* HC-05 factory baud rate */
+	LED_Init();
 
-	while(1)
+	Reply("READY\r\n");
+
+	while (1)
 	{
-		if(RxData == 0x00) LED_Close();   //
-		if(RxData == 0x01) LED_Open();    //
+		u8 cmd;
+
+		if (!RxReady)
+		{
+			continue;
+		}
+
+		cmd = RxData;
+		RxReady = 0;
+
+		switch (cmd)
+		{
+		case '1':
+			LED_Open();
+			Reply("LED:ON\r\n");
+			break;
+		case '0':
+			LED_Close();
+			Reply("LED:OFF\r\n");
+			break;
+		default:
+			/* Echo proves the link works both ways. */
+			Reply("ECHO:");
+			USART3_SendByte(cmd);
+			Reply("\r\n");
+			break;
+		}
 	}
 }
