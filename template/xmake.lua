@@ -14,17 +14,28 @@ target("template")
     add_defines("STM32F10X_MD", "USE_STDPERIPH_DRIVER", "HSE_VALUE=8000000")
 
     -- StdPeriph 头文件搜索路径
-    add_includedirs("Start", "Library", "System", "User")
+    -- 注意：add_includedirs 不会展开 ** 通配符，子目录必须显式列出，如：
+    -- "Hardware",
+    -- "Hardware/LED",
+    -- "Hardware/USART"
+    add_includedirs(
+        "Start",
+        "Library",
+        "System",
+        "User"
+    )
 
     -- set output filepath of .elf and .hex
     set_targetdir("Objects/")
 
     -- StdPeriph 外设库与应用代码
     -- 启动文件和 SystemInit 由 addon 的 CMSIS 设备包提供，不要重复添加
+    -- 使用 dir/**.c 递归匹配该目录及其所有子目录下的 .c 文件
+    -- 不要直接写 "**.c"，否则会把 Start/ 下由 addon 提供的文件也加进来导致重复定义
     add_files(
-        "Library/*.c",
-        "System/*.c",
-        "User/*.c"
+        "Library/**.c",
+        "System/**.c",
+        "User/**.c"
     )
 
 --

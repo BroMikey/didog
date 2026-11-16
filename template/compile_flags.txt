@@ -9,3 +9,8 @@
 -ILibrary
 -IUser
 -ISystem
+
+// 子目录必须显式列出，如：
+// -IHardware
+// -IHardware/LED
+// -IHardware/USART

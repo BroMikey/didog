@@ -3,6 +3,8 @@ todo/
 # archive/
 **/*.mp4
 
+.agents/skills/
+
 
 
 # ===== 文档文件 =====
