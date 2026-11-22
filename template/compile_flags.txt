@@ -11,6 +11,8 @@
 -ISystem
 
 // 子目录必须显式列出，如：
+// -ISystem
+// -ISystem/sys
 // -IHardware
 // -IHardware/LED
 // -IHardware/USART

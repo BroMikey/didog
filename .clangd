@@ -21,7 +21,7 @@ CompileFlags:
     - -ILibrary
     - -IUser
     - -ISystem
-    - -isystem
+    - -IHardware
     - null/share/armcc/include
     - -ferror-limit=0
   Remove:
